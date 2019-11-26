@@ -1,0 +1,101 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #c1cedf;
+}
+
+.wrap .addNewEvent,
+.wrap .showDaysEvents {
+  width: 40%;
+  margin: 40px 0;
+}
+
+.addNewEvent h2 {
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  font-size: 28px;
+}
+
+.addNewEvent fieldset {
+  margin: 0;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.addNewEvent fieldset .wrapForButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.addNewEvent label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid white;
+  padding: 10px 0;
+}
+
+.addNewEvent label input,
+.addNewEvent label select {
+  margin: 0 10px;
+  border: none;
+}
+
+.addNewEvent label textarea {
+  margin-left: 10px;
+  resize: none;
+  width: 100%;
+}
+
+.addNewEvent label ::-webkit-input-placeholder {
+  color: #dedfe4;
+}
+
+.addNewEvent label :-ms-input-placeholder {
+  color: #dedfe4;
+}
+
+.addNewEvent label ::-ms-input-placeholder {
+  color: #dedfe4;
+}
+
+.addNewEvent label ::placeholder {
+  color: #dedfe4;
+}
+
+.addNewEvent * {
+  color: white;
+  background-color: #46529e;
+}
+
+.addNewEvent button {
+  text-transform: uppercase;
+  padding: 10px;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.addNewEvent .submit {
+  background-color: #30b9ef;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.addNewEvent .reset {
+  background-color: #ee1628;
+}
+/*# sourceMappingURL=style.css.map */

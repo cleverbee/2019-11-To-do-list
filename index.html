@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="addNewEvent">
+            <h2>Add new event</h2>
+            <form action="" id="newEventForm">
+                <fieldset>
+                    <label for="typeOfEvent">
+                        <span>Choose the type of event:</span>
+                        <select name="" id="typeOfEvent">
+                            <option selected disabled>click here to select</option>
+                            <option value="meeting">Meeting</option>
+                            <option value="purchases">Purchases</option>
+                            <option value="lesson">Lesson</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </label>
+                    <label for="nameOfPerson" id="nameOfPersonLabel">
+                        <span>Name:</span>
+                        <input type="text" id="nameOfPerson" placeholder="name of person">
+                    </label>
+                    <label for="topicOfMeeting" id="topicOfMeetingLabel">
+                        <span>Topic:</span>
+                        <input type="text" id="topicOfMeeting" placeholder="topic of the meeting">
+                    </label>
+                    <label for="shoppingList" id="shoppingListLabel">
+                        <span>Shopping list:</span>
+                        <textarea name="" id="shoppingList" cols="30" rows="6" placeholder="product name"></textarea>
+                    </label>
+                    <label for="titleOfLesson" id="titleOfLessonLabel">
+                        <span>Title of the lesson:</span>
+                        <input type="text" id="titleOfLesson" placeholder="title of the lesson">
+                    </label>
+                    <label for="nameOfTeacher" id="nameOfTeacherLabel">
+                        <span>Name of the teacher:</span>
+                        <input type="text" id="nameOfTeacher" placeholder="name of the teacher">
+                    </label>
+                    <label for="otherEvent" id="otherEventLabel">
+                        <span>Name of the event:</span>
+                        <input type="text" id="otherEvent" placeholder="name of the event">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <label for="datePut">
+                        <span>Date:</span>
+                        <input type="date" name="" id="datePut">
+                    </label>
+                    <label for="timePut">
+                        <span>Time:</span>
+                        <input type="time" name="" id="timePut">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <label for="placePut">
+                        <span>Place:</span>
+                        <input type="text" name="" id="placePut" placeholder="place of event">
+                    </label>
+                    <label for="notesPut">
+                        <span>Notes:</span>
+                        <textarea name="" id="notesPut" cols="30" rows="6"></textarea>
+                    </label>
+                    <label for="remind">
+                        <span>Remind me one hour before!</span>
+                        <input type="checkbox" name="" id="remind">
+                    </label>
+                </fieldset>
+                <fieldset>
+                    <div class="wrapForButtons">
+                        <button type="submit" class="submit">Add new event</button>
+                        <button type="reset" class="reset">Clean all fields</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="showDaysEvents">
+            <div>
+                <span>Date: </span>
+                <span id="dateOut"></span>
+            </div>
+            <div id="wrapForEvents">
+
+            </div>
+        </div>
+    </div>
+    <div class="allEvents"></div>
+
+    <script src="main.js" type="module"></script>
+</body>
+
+</html>

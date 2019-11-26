@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+.wrap {
+  display: flex;
+  justify-content: space-around;
+  background-color: #c1cedf;
+  .addNewEvent,
+  .showDaysEvents {
+    width: 40%;
+    margin: 40px 0;
+  }
+}
+.addNewEvent {
+  h2 {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 28px;
+  }
+  fieldset {
+    margin: 0;
+    border: none;
+    display: flex;
+    width: 100%;
+    .wrapForButtons {
+      display: flex;
+    }
+  }
+  label {
+    display: flex;
+    border-bottom: 1px solid white;
+    padding: 10px 0;
+    input,
+    select {
+      margin: 0 10px;
+      border: none;
+    }
+    textarea {
+      margin-left: 10px;
+      resize: none;
+      width: 100%;
+    }
+    ::placeholder {
+      color: #dedfe4;
+    }
+  }
+  * {
+    color: white;
+    background-color: #46529e;
+  }
+  button {
+    text-transform: uppercase;
+    padding: 10px;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  .submit {
+    background-color: #30b9ef;
+    flex-grow: 1;
+  }
+  .reset {
+    background-color: #ee1628;
+  }
+}
