@@ -54,7 +54,7 @@ const getEvent = () => {
         const remind = document.getElementById('remind').checked;
 
         const typeOfEvent = document.getElementById('typeOfEvent');
-        let newEvent;
+        let newEvent = {};
         switch (typeOfEvent.value) {
             case 'meeting':
                 const nameOfPerson = document.getElementById('nameOfPerson').value;
@@ -75,8 +75,10 @@ const getEvent = () => {
                 newEvent = new Other(date, time, place, note, remind, name);
                 break;
         }
-        
-        saveEventInLocalStorage(newEvent);
+
+        if (newEvent.date) {
+            saveEventInLocalStorage(newEvent);
+        }
         resetForm();
     })
 };
@@ -88,9 +90,6 @@ const saveEventInLocalStorage = newEvent => {
     };
     eventsInDay.push(newEvent);
     localStorage.setItem(newEvent.date, JSON.stringify(eventsInDay));
-
-    console.log(JSON.parse(localStorage.getItem(newEvent.date)));
-    console.log(eventsInDay);
 };
 
 export { getEvent };

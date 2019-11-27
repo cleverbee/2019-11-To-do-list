@@ -11,15 +11,15 @@
     margin: 40px 0;
   }
 }
+.sectionTitle {
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  font-size: 28px;
+}
 .addNewEvent {
   color: white;
   background-color: #46529e;
-  h2 {
-    padding: 10px;
-    margin: 0;
-    text-align: center;
-    font-size: 28px;
-  }
   fieldset {
     margin: 0;
     border: none;
@@ -68,5 +68,12 @@
   }
   .reset {
     background-color: #ee1628;
+  }
+}
+.showDaysEvents {
+  background-color: white;
+  .dateOut {    
+    font-size: 24px;
+    border: none;
   }
 }

@@ -12,12 +12,12 @@
 <body>
     <div class="wrap">
         <div class="addNewEvent">
-            <h2>Add new event</h2>
+            <h2 class="sectionTitle">Add new event</h2>
             <form action="" id="newEventForm">
                 <fieldset class="fieldsetForTypes">
                     <label for="typeOfEvent">
                         <span>Choose the type of event:</span>
-                        <select name="" id="typeOfEvent">
+                        <select name="" id="typeOfEvent" required>
                             <option value="" selected disabled>click here to select</option>
                             <option value="meeting">Meeting</option>
                             <option value="purchases">Purchases</option>
@@ -53,7 +53,7 @@
                 <fieldset>
                     <label for="datePut">
                         <span>Date:</span>
-                        <input type="date" name="" id="datePut">
+                        <input type="date" name="" id="datePut" required>
                     </label>
                     <label for="timePut">
                         <span>Time:</span>
@@ -84,10 +84,10 @@
             </form>
         </div>
         <div class="showDaysEvents">
-            <div>
+            <h2 class="sectionTitle">
                 <span>Date: </span>
-                <span id="dateOut"></span>
-            </div>
+                <input type="date" id="dateOut" class="dateOut">
+            </h2>
             <div id="wrapForEvents">
 
             </div>
