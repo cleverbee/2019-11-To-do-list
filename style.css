@@ -18,6 +18,11 @@
   margin: 40px 0;
 }
 
+.addNewEvent {
+  color: white;
+  background-color: #46529e;
+}
+
 .addNewEvent h2 {
   padding: 10px;
   margin: 0;
@@ -28,9 +33,6 @@
 .addNewEvent fieldset {
   margin: 0;
   border: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   width: 100%;
 }
 
@@ -38,6 +40,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.addNewEvent .fieldsetForTypes {
+  height: 172px;
 }
 
 .addNewEvent label {
@@ -48,8 +54,15 @@
   padding: 10px 0;
 }
 
+.addNewEvent label option {
+  color: white;
+  background-color: #46529e;
+}
+
 .addNewEvent label input,
 .addNewEvent label select {
+  color: inherit;
+  background-color: inherit;
   margin: 0 10px;
   border: none;
 }
@@ -76,14 +89,10 @@
   color: #dedfe4;
 }
 
-.addNewEvent * {
-  color: white;
-  background-color: #46529e;
-}
-
 .addNewEvent button {
   text-transform: uppercase;
   padding: 10px;
+  color: white;
   border: 1px solid white;
   cursor: pointer;
 }

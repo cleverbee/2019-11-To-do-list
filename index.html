@@ -14,38 +14,38 @@
         <div class="addNewEvent">
             <h2>Add new event</h2>
             <form action="" id="newEventForm">
-                <fieldset>
+                <fieldset class="fieldsetForTypes">
                     <label for="typeOfEvent">
                         <span>Choose the type of event:</span>
                         <select name="" id="typeOfEvent">
-                            <option selected disabled>click here to select</option>
+                            <option value="" selected disabled>click here to select</option>
                             <option value="meeting">Meeting</option>
                             <option value="purchases">Purchases</option>
                             <option value="lesson">Lesson</option>
                             <option value="other">Other</option>
                         </select>
                     </label>
-                    <label for="nameOfPerson" id="nameOfPersonLabel">
+                    <label for="nameOfPerson" class="labelForType">
                         <span>Name:</span>
                         <input type="text" id="nameOfPerson" placeholder="name of person">
                     </label>
-                    <label for="topicOfMeeting" id="topicOfMeetingLabel">
+                    <label for="topicOfMeeting" class="labelForType">
                         <span>Topic:</span>
                         <input type="text" id="topicOfMeeting" placeholder="topic of the meeting">
                     </label>
-                    <label for="shoppingList" id="shoppingListLabel">
+                    <label for="shoppingList" class="labelForType">
                         <span>Shopping list:</span>
                         <textarea name="" id="shoppingList" cols="30" rows="6" placeholder="product name"></textarea>
                     </label>
-                    <label for="titleOfLesson" id="titleOfLessonLabel">
+                    <label for="titleOfLesson" class="labelForType">
                         <span>Title of the lesson:</span>
                         <input type="text" id="titleOfLesson" placeholder="title of the lesson">
                     </label>
-                    <label for="nameOfTeacher" id="nameOfTeacherLabel">
+                    <label for="nameOfTeacher" class="labelForType">
                         <span>Name of the teacher:</span>
                         <input type="text" id="nameOfTeacher" placeholder="name of the teacher">
                     </label>
-                    <label for="otherEvent" id="otherEventLabel">
+                    <label for="otherEvent" class="labelForType">
                         <span>Name of the event:</span>
                         <input type="text" id="otherEvent" placeholder="name of the event">
                     </label>
@@ -67,7 +67,8 @@
                     </label>
                     <label for="notesPut">
                         <span>Notes:</span>
-                        <textarea name="" id="notesPut" cols="30" rows="6"></textarea>
+                        <textarea name="" id="notesPut" cols="30" rows="6"
+                            placeholder="write here something"></textarea>
                     </label>
                     <label for="remind">
                         <span>Remind me one hour before!</span>

@@ -12,6 +12,8 @@
   }
 }
 .addNewEvent {
+  color: white;
+  background-color: #46529e;
   h2 {
     padding: 10px;
     margin: 0;
@@ -21,18 +23,26 @@
   fieldset {
     margin: 0;
     border: none;
-    display: flex;
     width: 100%;
     .wrapForButtons {
       display: flex;
     }
   }
+  .fieldsetForTypes {
+    height: 172px;
+  }
   label {
     display: flex;
     border-bottom: 1px solid white;
     padding: 10px 0;
+    option {
+      color: white;
+      background-color: #46529e;
+    }
     input,
     select {
+      color: inherit;
+      background-color: inherit;
       margin: 0 10px;
       border: none;
     }
@@ -45,13 +55,10 @@
       color: #dedfe4;
     }
   }
-  * {
-    color: white;
-    background-color: #46529e;
-  }
   button {
     text-transform: uppercase;
     padding: 10px;
+    color: white;
     border: 1px solid white;
     cursor: pointer;
   }

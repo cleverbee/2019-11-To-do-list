@@ -1,7 +1,7 @@
 'use strict'
+import * as addEvent from './src/addEvent/controller.js';
+// import * as listOfEvent from './src/listOfEvents/controller.js';
 
-// const nameOfPersonLabel = document.getElementById('nameOfPersonLabel');
-// nameOfPersonLabel.style.display = 'none';
+addEvent.changeLabels();
+addEvent.getEvent();
 
-
-export { document };
