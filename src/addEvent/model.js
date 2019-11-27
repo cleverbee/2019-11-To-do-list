@@ -15,12 +15,14 @@ class Meeting extends Event {
         super(date, time, place, note, remind);
         this.nameOfPerson = nameOfPerson;
         this.topicOfMeeting = topicOfMeeting;
+        this.type = 'meeting';
     }
 }
 class Purchases extends Event {
     constructor(date, time, place, note, remind, shoppingList) {
         super(date, time, place, note, remind);
         this.shoppingList = shoppingList;
+        this.type = 'purchases';
     }
 }
 class Lesson extends Event {
@@ -28,12 +30,14 @@ class Lesson extends Event {
         super(date, time, place, note, remind);
         this.titleOfLesson = titleOfLesson;
         this.nameOfTeacher = nameOfTeacher;
+        this.type = 'lesson';
     }
 }
 class Other extends Event {
     constructor(date, time, place, note, remind, name) {
         super(date, time, place, note, remind);
         this.name = name;
+        this.other = 'other';
     }
 }
 
@@ -48,7 +52,6 @@ const getEvent = () => {
         const place = document.getElementById('placePut').value;
         const note = document.getElementById('notesPut').value;
         const remind = document.getElementById('remind').checked;
-        // console.log(remind)
 
         const typeOfEvent = document.getElementById('typeOfEvent');
         let newEvent;
@@ -72,13 +75,22 @@ const getEvent = () => {
                 newEvent = new Other(date, time, place, note, remind, name);
                 break;
         }
+        
+        saveEventInLocalStorage(newEvent);
         resetForm();
-        console.log(newEvent);
     })
 };
 
-// const saveEventInLocalStorage = () => {
+const saveEventInLocalStorage = newEvent => {
+    const eventsInDay = [];
+    if (localStorage.getItem(newEvent.date)) {
+        eventsInDay.push(...JSON.parse(localStorage.getItem(newEvent.date)));
+    };
+    eventsInDay.push(newEvent);
+    localStorage.setItem(newEvent.date, JSON.stringify(eventsInDay));
 
-// };
+    console.log(JSON.parse(localStorage.getItem(newEvent.date)));
+    console.log(eventsInDay);
+};
 
 export { getEvent };
