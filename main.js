@@ -6,5 +6,5 @@ import * as eventsInOneDay from './src/eventsInOneDay/controller.js'
 addEvent.changeLabels();
 addEvent.getEvent();
 
-eventsInOneDay.showDate();
+eventsInOneDay.showBlockOfDayEvents();
 eventsInOneDay.saveDate();

@@ -37,11 +37,20 @@ class Other extends Event {
     constructor(date, time, place, note, remind, name) {
         super(date, time, place, note, remind);
         this.name = name;
-        this.other = 'other';
+        this.type = 'other';
     }
 }
 
 const submit = document.querySelector('button.submit');
+
+const saveEventInLocalStorage = newEvent => {
+    const eventsInDay = [];
+    if (localStorage.getItem(newEvent.date)) {
+        eventsInDay.push(...JSON.parse(localStorage.getItem(newEvent.date)));
+    };
+    eventsInDay.push(newEvent);
+    localStorage.setItem(newEvent.date, JSON.stringify(eventsInDay));
+};
 
 const getEvent = () => {
     submit.addEventListener('click', () => {
@@ -81,15 +90,6 @@ const getEvent = () => {
         }
         resetForm();
     })
-};
-
-const saveEventInLocalStorage = newEvent => {
-    const eventsInDay = [];
-    if (localStorage.getItem(newEvent.date)) {
-        eventsInDay.push(...JSON.parse(localStorage.getItem(newEvent.date)));
-    };
-    eventsInDay.push(newEvent);
-    localStorage.setItem(newEvent.date, JSON.stringify(eventsInDay));
 };
 
 export { getEvent };

@@ -11,10 +11,10 @@
 
 <body>
     <div class="wrap">
-        <div class="addNewEvent">
-            <h2 class="sectionTitle">Add new event</h2>
+        <div class="add-new-event">
+            <h2 class="section-title">Add new event</h2>
             <form action="" id="newEventForm">
-                <fieldset class="fieldsetForTypes">
+                <fieldset class="fieldset-for-types">
                     <label for="typeOfEvent">
                         <span>Choose the type of event:</span>
                         <select name="" id="typeOfEvent" required>
@@ -76,20 +76,33 @@
                     </label>
                 </fieldset>
                 <fieldset>
-                    <div class="wrapForButtons">
+                    <div class="wrap-for-buttons">
                         <button type="submit" class="submit">Add new event</button>
                         <button type="reset" class="reset">Clean all fields</button>
                     </div>
                 </fieldset>
             </form>
         </div>
-        <div class="showDaysEvents">
-            <h2 class="sectionTitle">
+        <div class="show-days-events">
+            <h2 class="section-title">
                 <span>Date: </span>
-                <input type="date" id="dateOut" class="dateOut">
+                <input type="date" id="dateOut" class="date-out">
             </h2>
-            <div id="wrapForEvents">
-
+            <div id="wrapForEvents" class="wrap-for-events">
+                <div class="item-in-day" data-temp>
+                    <img class="item-remind" src="/img/remind-red.svg" alt="">
+                    <span class="item-time">12:00</span>
+                    <div class="item-main-part">
+                        <div>
+                            Meeting: Adam Smith
+                        </div>
+                        <div>
+                            <span>Place: </span>
+                            <span>Central Str. 88</span>
+                        </div>
+                    </div>
+                    <img class="item-delete" src="/img/delete.svg" alt="">
+                </div>
             </div>
         </div>
     </div>

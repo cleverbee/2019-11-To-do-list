@@ -2,7 +2,7 @@
 import * as view from './view.js';
 import * as model from './model.js';
 
-const showDate = () => view.showDate();
+const showBlockOfDayEvents = () => view.showBlockOfDayEvents();
 const saveDate = () => model.saveDate();
 
-export { showDate, saveDate };
+export { showBlockOfDayEvents, saveDate };
