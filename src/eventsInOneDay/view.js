@@ -22,16 +22,18 @@ const showDate = () => {
 }
 
 const showListOfEvents = (date) => {
-    const arrOfEvents = [...JSON.parse(localStorage.getItem(`${date.year}-${date.month}-${date.day}`))];
-    console.log(arrOfEvents)
+    let arrOfEvents = [];
+    if (localStorage.getItem(`${date.year}-${date.month}-${date.day}`)) {
+        arrOfEvents = [...JSON.parse(localStorage.getItem(`${date.year}-${date.month}-${date.day}`))];
+    }
     arrOfEvents.sort((a, b) => {
         if (a.time === '') a.time = String(Infinity);
         if (b.time === '') b.time = String(Infinity);
         return a.time > b.time ? 1 : -1
     });
-    console.log(arrOfEvents)
 
     const wrapForEvents = document.getElementById('wrapForEvents');
+    wrapForEvents.innerHTML = '';
     for (let i = 0; i < arrOfEvents.length; i++) {
         const itemInDay = document.createElement('div');
         itemInDay.classList.add('item-in-day');
