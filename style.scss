@@ -8,6 +8,7 @@
   .add-new-event,
   .show-days-events {
     width: 40%;
+    height: 590px;
     margin: 40px 0;
   }
 }
@@ -72,13 +73,21 @@
 }
 .show-days-events {
   background-color: white;
+  display: flex;
+  flex-direction: column;
   .date-out {
     font-size: 20pt;
     border: none;
   }
+  .wrap-for-section {
+    display: flex;
+    flex-direction: column;
+    height: 530px;
+  }
   .wrap-for-events {
+    flex-grow: 1;
     border: 1px solid black;
-    height: 70%;
+    margin: 1px 1px 0;
     overflow: auto;
     .item-in-day {
       height: 60px;
@@ -105,5 +114,10 @@
         width: 36px;
       }
     }
+  }
+  .section-footer {
+    height: 100px;
+    border: 1px solid black;
+    margin: 1px;
   }
 }

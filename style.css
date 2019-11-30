@@ -15,6 +15,7 @@
 .wrap .add-new-event,
 .wrap .show-days-events {
   width: 40%;
+  height: 590px;
   margin: 40px 0;
 }
 
@@ -110,6 +111,13 @@
 
 .show-days-events {
   background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .show-days-events .date-out {
@@ -117,9 +125,23 @@
   border: none;
 }
 
+.show-days-events .wrap-for-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 530px;
+}
+
 .show-days-events .wrap-for-events {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
   border: 1px solid black;
-  height: 70%;
+  margin: 1px 1px 0;
   overflow: auto;
 }
 
@@ -155,5 +177,11 @@
 .show-days-events .wrap-for-events .item-in-day .item-delete {
   margin: 0 16px 0 auto;
   width: 36px;
+}
+
+.show-days-events .section-footer {
+  height: 100px;
+  border: 1px solid black;
+  margin: 1px;
 }
 /*# sourceMappingURL=style.css.map */
