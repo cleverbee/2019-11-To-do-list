@@ -76,4 +76,18 @@ const checkIfEventsForRemind = () => {
     setInterval(remindAboutEvent, 60000);
 };
 
-export { saveDate, checkIfEventsForRemind };
+const deleteElementOnClick = () => {
+    const deleteButtons = document.querySelectorAll('.item-delete');
+    const yyyymmddStr = document.getElementById('dateOut').value;
+    const arrayOfEvent = global.createArrayOfEventsInDay(yyyymmddStr);
+
+    for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener('dblclick', () => {
+            arrayOfEvent.splice(i, 1);
+            global.saveDayInLocalStorage(yyyymmddStr, arrayOfEvent);
+            showBlockOfDayEvents();
+        });
+    }
+};
+
+export { saveDate, checkIfEventsForRemind, deleteElementOnClick };

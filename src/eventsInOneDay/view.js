@@ -1,5 +1,6 @@
 'use strict';
 import * as global from '../../main.js';
+import { deleteElementOnClick } from './controller.js';
 
 //Pokazać wybraną datę w tytule bloku.
 const showDate = () => {
@@ -90,6 +91,8 @@ const showListOfEvents = arrayOfEvents => {
         itemDelete.style.cursor = 'pointer';
         itemInDay.append(itemDelete);
     }
+
+    deleteElementOnClick();
 }
 
 //Pokazać szczegóły wybranego eventa

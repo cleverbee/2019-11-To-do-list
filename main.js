@@ -2,12 +2,17 @@
 import * as addEvent from './src/addEvent/controller.js';
 import * as eventsInOneDay from './src/eventsInOneDay/controller.js';
 
-//GLobalna funkcja dla zapisu całego dnia w localStorage, dzień w formacie 'yyyy-mm-dd'
+//GLobalna funkcja dla zapisu całego dnia w localStorage, dzień w formacie 'yyyy-mm-dd'.
 const saveDayInLocalStorage = (yyyymmddStr, arrayOfEvents) => {
-    localStorage.setItem(yyyymmddStr, JSON.stringify(arrayOfEvents));
+    if (arrayOfEvents.length !== 0) {
+        localStorage.setItem(yyyymmddStr, JSON.stringify(arrayOfEvents));
+    }
+    else {
+        localStorage.removeItem(yyyymmddStr);
+    }
 };
 
-//Globalna funkcja dla stworzenia key w formacie 'yyyy-mm-dd' z objektu Date
+//Globalna funkcja dla stworzenia key w formacie 'yyyy-mm-dd' z objektu Date.
 const createYyyymmddStr = date => {
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
@@ -18,7 +23,7 @@ const createYyyymmddStr = date => {
     return yyyymmddStr;
 };
 
-//Globalna funkcja dla przeczytania dnia z localStorage, zwraca dzień jako wysortowaną tablicę eventów
+//Globalna funkcja dla przeczytania dnia z localStorage, zwraca dzień jako wysortowaną tablicę eventów.
 const createArrayOfEventsInDay = yyyymmddStr => {
     let arrayOfEvents = [];
     if (localStorage.getItem(yyyymmddStr)) {
@@ -38,5 +43,6 @@ addEvent.createNewEvent();
 eventsInOneDay.showBlockOfDayEvents();
 eventsInOneDay.saveDate();
 eventsInOneDay.checkIfEventsForRemind();
+// eventsInOneDay.deleteElementOnClick();
 
 export { saveDayInLocalStorage, createYyyymmddStr, createArrayOfEventsInDay };
