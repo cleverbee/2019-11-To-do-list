@@ -1,43 +1,29 @@
 'use strict';
+import * as global from '../../main.js';
 
+//Pokazać wybraną datę w tytule bloku.
 const showDate = () => {
-    let date;
+    let dateForList;
+
     if (localStorage.getItem('date')) {
-        date = new Date(JSON.parse(localStorage.getItem('date')));
+        let key = JSON.parse(localStorage.getItem('date'));
+        dateForList = global.createYyyymmddStr(new Date(key));
     }
     else {
-        date = new Date();
+        dateForList = global.createYyyymmddStr(new Date());
     }
-
-    date.year = date.getFullYear();
-    date.month = date.getMonth() + 1;
-    if (date.month < 10) date.month = '0' + date.month;
-    date.day = date.getDate();
-    if (date.day < 10) date.day = '0' + date.day;
 
     const dateOut = document.getElementById('dateOut');
-    dateOut.value = `${date.year}-${date.month}-${date.day}`;
+    dateOut.value = dateForList;
 
-    return date;
-}
+    return dateForList;
+};
 
-const createArrayOfEvents = (date) => {
-    let arrOfEvents = [];
-    if (localStorage.getItem(`${date.year}-${date.month}-${date.day}`)) {
-        arrOfEvents = [...JSON.parse(localStorage.getItem(`${date.year}-${date.month}-${date.day}`))];
-    }
-    arrOfEvents.sort((a, b) => {
-        if (a.time === '') a.time = String(Infinity);
-        if (b.time === '') b.time = String(Infinity);
-        return a.time > b.time ? 1 : -1
-    });
-    return arrOfEvents;
-}
-
-const showListOfEvents = arrOfEvents => {
+//Wypisać listę eventów.
+const showListOfEvents = arrayOfEvents => {
     const wrapForEvents = document.getElementById('wrapForEvents');
     wrapForEvents.innerHTML = '';
-    for (let i = 0; i < arrOfEvents.length; i++) {
+    for (let i = 0; i < arrayOfEvents.length; i++) {
         const itemInDay = document.createElement('div');
         itemInDay.classList.add('item-in-day');
         itemInDay.id = `itemInDay-${i}`;
@@ -45,21 +31,23 @@ const showListOfEvents = arrOfEvents => {
 
         const itemRemind = document.createElement('img');
         itemRemind.classList.add('item-remind');
-        itemRemind.dataset.item = i;
-        if (arrOfEvents[i].remind === true) {
-            itemRemind.src = '/img/remind-red.svg';
-            itemRemind.dataset.remind = 'true';
+        if (arrayOfEvents[i].time !== String(Infinity)) {
+            itemRemind.dataset.itemId = `itemInDay-${i}`;
+            if (arrayOfEvents[i].remind === true) {
+                itemRemind.src = '/img/remind-red.svg';
+                itemRemind.dataset.remind = 'true';
+            }
+            else {
+                itemRemind.src = '/img/remind-blue.svg';
+                itemRemind.dataset.remind = 'false';
+            }
+            itemRemind.style.cursor = 'pointer';
         }
-        else {
-            itemRemind.src = '/img/remind-blue.svg';
-            itemRemind.dataset.remind = 'false';
-        }
-        itemRemind.style.cursor = 'pointer';
         itemInDay.append(itemRemind);
 
         const itemTime = document.createElement('span');
         itemTime.classList.add('item-time');
-        let time = arrOfEvents[i].time;
+        let time = arrayOfEvents[i].time;
         if (time === String(Infinity)) time = '&#8226;';
         itemTime.innerHTML = time;
         itemInDay.append(itemTime);
@@ -67,9 +55,9 @@ const showListOfEvents = arrOfEvents => {
         const itemMainPart = document.createElement('div');
         itemMainPart.classList.add('item-main-part');
         const div1 = document.createElement('div');
-        switch (arrOfEvents[i].type) {
+        switch (arrayOfEvents[i].type) {
             case 'meeting':
-                let nameOfPerson = arrOfEvents[i].nameOfPerson
+                let nameOfPerson = arrayOfEvents[i].nameOfPerson
                 if (nameOfPerson === '') nameOfPerson = 'unknown';
                 div1.innerHTML = `Meeting: ${nameOfPerson}`;
                 break;
@@ -77,18 +65,18 @@ const showListOfEvents = arrOfEvents => {
                 div1.innerHTML = 'Purchases';
                 break;
             case 'lesson':
-                let titleOfLesson = arrOfEvents[i].titleOfLesson;
-                if (titleOfLesson === ' ') titleOfLesson = 'unknown';
+                let titleOfLesson = arrayOfEvents[i].titleOfLesson;
+                if (titleOfLesson === '') titleOfLesson = 'unknown';
                 div1.innerHTML = `Lesson: ${titleOfLesson}`;
                 break;
             case 'other':
-                let name = arrOfEvents[i].name;
-                if (name === '') name = 'without name';
+                let name = arrayOfEvents[i].name;
+                if (name === '') name = 'without title';
                 div1.innerHTML = `Event: ${name}`;
         }
         itemMainPart.append(div1);
         const div2 = document.createElement('div');
-        let place = arrOfEvents[i].place;
+        let place = arrayOfEvents[i].place;
         if (place === '') place = 'no definition';
         div2.innerHTML = `Place: ${place}`;
         itemMainPart.append(div2);
@@ -96,7 +84,7 @@ const showListOfEvents = arrOfEvents => {
 
         const itemDelete = document.createElement('img');
         itemDelete.classList.add('item-delete');
-        itemDelete.dataset.item = i;
+        itemDelete.dataset.itemId = `itemInDay-${i}`;
         itemDelete.src = '/img/delete.svg';
         itemDelete.alt = 'delete';
         itemDelete.style.cursor = 'pointer';
@@ -104,41 +92,41 @@ const showListOfEvents = arrOfEvents => {
     }
 }
 
-const showDetailsOfEvent = arrOfEvents => {
-    const detailOfEvent = document.getElementById('detailOfEvent');
+//Pokazać szczegóły wybranego eventa
+const showDetailsOfEvent = arrayOfEvents => {
+    const detailsOfEvent = document.getElementById('detailOfEvent');
 
-    for (let i = 0; i < arrOfEvents.length; i++) {
+    for (let i = 0; i < arrayOfEvents.length; i++) {
         const mouseover = () => {
-            let note = arrOfEvents[i].note;
+            let note = arrayOfEvents[i].note;
             if (note === '') note = 'no notes';
-            switch (arrOfEvents[i].type) {
+            switch (arrayOfEvents[i].type) {
                 case 'meeting':
-                    let topicOfMeeting = arrOfEvents[i].topicOfMeeting;
+                    let topicOfMeeting = arrayOfEvents[i].topicOfMeeting;
                     if (topicOfMeeting === '') topicOfMeeting = 'unknown';
-                    detailOfEvent.innerText = `Topic of meeting: ${topicOfMeeting}`;
-                    detailOfEvent.innerText += `\nNotes: ${note}`;
+                    detailsOfEvent.innerText = `Topic of meeting: ${topicOfMeeting}`;
+                    detailsOfEvent.innerText += `\nNotes: ${note}`;
                     break;
                 case 'purchases':
-                    let shoppingList = arrOfEvents[i].shoppingList;
+                    let shoppingList = arrayOfEvents[i].shoppingList;
                     if (shoppingList === '') shoppingList = 'no items';
-                    detailOfEvent.innerText = `Shopping list: ${shoppingList}`;
-                    detailOfEvent.innerText += `\nNotes: ${note}`;
+                    detailsOfEvent.innerText = `Shopping list:\n${shoppingList}`;
+                    detailsOfEvent.innerText += `\nNotes: ${note}`;
                     break;
                 case 'lesson':
-                    let nameOfTeacher = arrOfEvents[i].nameOfTeacher;
+                    let nameOfTeacher = arrayOfEvents[i].nameOfTeacher;
                     if (nameOfTeacher === '') nameOfTeacher = 'unknown';
-                    detailOfEvent.innerText = `Teacher: ${nameOfTeacher}`;
-                    detailOfEvent.innerText += `\nNotes: ${note}`;
+                    detailsOfEvent.innerText = `Teacher: ${nameOfTeacher}`;
+                    detailsOfEvent.innerText += `\nNotes: ${note}`;
                     break;
                 case 'other':
-                    detailOfEvent.innerText += `\nNotes: ${note}`;
+                    detailsOfEvent.innerText += `\nNotes: ${note}`;
                     break;
             }
         };
-
         const mouseout = () => {
             detailOfEvent.innerHTML = '';
-        }
+        };
 
         const item = document.getElementById(`itemInDay-${i}`);
         item.addEventListener('mouseover', mouseover);
@@ -147,10 +135,10 @@ const showDetailsOfEvent = arrOfEvents => {
 }
 
 const showBlockOfDayEvents = () => {
-    const date = showDate();
-    const arrOfEvents = createArrayOfEvents(date);
-    showListOfEvents(arrOfEvents);
-    showDetailsOfEvent(arrOfEvents);
-}
+    const dateForList = showDate();
+    const arrayOfEvents = global.createArrayOfEventsInDay(dateForList);
+    showListOfEvents(arrayOfEvents);
+    showDetailsOfEvent(arrayOfEvents);
+};
 
 export { showBlockOfDayEvents };

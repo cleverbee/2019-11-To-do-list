@@ -1,6 +1,7 @@
 'use strict';
-import { resetForm } from './controller.js';
+import * as global from '../../main.js';
 
+//Klasy dla stworzenia poszczególnych eventów
 class Event {
     constructor(date, time, place, note, remind) {
         this.date = date;
@@ -41,21 +42,18 @@ class Other extends Event {
     }
 }
 
-const submit = document.querySelector('button.submit');
-
-const saveEventInLocalStorage = newEvent => {
-    const eventsInDay = [];
-    if (localStorage.getItem(newEvent.date)) {
-        eventsInDay.push(...JSON.parse(localStorage.getItem(newEvent.date)));
-    };
-    eventsInDay.push(newEvent);
-    localStorage.setItem(newEvent.date, JSON.stringify(eventsInDay));
+//Dodać utworzony event do danego dnia.
+const addEventInDay = newEvent => {
+    const yyyymmddStr = newEvent.date;
+    const arrayOfEvents = global.createArrayOfEventsInDay(yyyymmddStr);
+    arrayOfEvents.push(newEvent);
+    global.saveDayInLocalStorage(yyyymmddStr, arrayOfEvents);
 };
 
-const getEvent = () => {
+//Otrzymać event z formy.
+const createNewEvent = () => {
+    const submit = document.querySelector('button.submit');
     submit.addEventListener('click', () => {
-        event.preventDefault();
-
         const date = document.getElementById('datePut').value;
         const time = document.getElementById('timePut').value;
         const place = document.getElementById('placePut').value;
@@ -86,10 +84,9 @@ const getEvent = () => {
         }
 
         if (newEvent.date) {
-            saveEventInLocalStorage(newEvent);
+            addEventInDay(newEvent);
         }
-        resetForm();
     })
 };
 
-export { getEvent };
+export { createNewEvent };

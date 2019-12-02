@@ -1,14 +1,35 @@
 'use strict';
+
 const labelsForEvents = document.querySelectorAll('label.labelForType');
 const typeOfEvent = document.getElementById('typeOfEvent');
 
+//Ukryć checkbox dla remindera, jeżeli nie ma czasu eventu
+const deactivateRemind = () => {
+    const timePut = document.getElementById('timePut');
+    const remind = document.getElementById('remind');
+    remind.setAttribute('disabled', 'disabled');
+
+    timePut.addEventListener('change', () => {
+        if (timePut.value === '') {
+            remind.checked = false;
+            remind.setAttribute('disabled', 'disabled');
+        }
+        else {
+            remind.removeAttribute('disabled');
+        }
+    });
+};
+
+//Ukryć wszystkie pola dla typów eventów
 const hideLabels = () => {
     labelsForEvents.forEach(item => {
         item.style.display = 'none';
     });
 }
 
+//Pokazać te pola, które są potrzebne dla danego typu eventu.
 const changeLabels = () => {
+    deactivateRemind();
     hideLabels();
     typeOfEvent.addEventListener('change', () => {
         hideLabels();
@@ -31,9 +52,4 @@ const changeLabels = () => {
     })
 };
 
-const resetForm = () => {
-    const form = document.getElementById('newEventForm');
-    form.reset();
-}
-
-export { changeLabels, resetForm }
+export { changeLabels }

@@ -1,9 +1,9 @@
 'use strict';
-import * as model from './model.js'
-import * as view from './view.js'
+import * as view from './view.js';
+import * as model from './model.js';
 
 const changeLabels = () => view.changeLabels();
-const resetForm = () => view.resetForm();
-const getEvent = () => model.getEvent();
 
-export { changeLabels, resetForm, getEvent };
+const createNewEvent = () => model.createNewEvent();
+
+export { changeLabels, createNewEvent };
