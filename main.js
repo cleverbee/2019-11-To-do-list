@@ -43,6 +43,6 @@ addEvent.createNewEvent();
 eventsInOneDay.showBlockOfDayEvents();
 eventsInOneDay.saveDate();
 eventsInOneDay.checkIfEventsForRemind();
-// eventsInOneDay.deleteElementOnClick();
+eventsInOneDay.deleteOldReminder();
 
 export { saveDayInLocalStorage, createYyyymmddStr, createArrayOfEventsInDay };

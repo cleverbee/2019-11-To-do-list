@@ -1,6 +1,6 @@
 'use strict';
 import * as global from '../../main.js';
-import { deleteElementOnClick } from './controller.js';
+import { manageElementsOnList } from './controller.js';
 
 //Pokazać wybraną datę w tytule bloku.
 const showDate = () => {
@@ -38,7 +38,7 @@ const showListOfEvents = arrayOfEvents => {
                 itemRemind.src = '/img/remind-red.svg';
                 itemRemind.dataset.remind = 'true';
             }
-            else {
+            else if (arrayOfEvents[i].remind === false) {
                 itemRemind.src = '/img/remind-blue.svg';
                 itemRemind.dataset.remind = 'false';
             }
@@ -92,7 +92,7 @@ const showListOfEvents = arrayOfEvents => {
         itemInDay.append(itemDelete);
     }
 
-    deleteElementOnClick();
+    manageElementsOnList();
 }
 
 //Pokazać szczegóły wybranego eventa

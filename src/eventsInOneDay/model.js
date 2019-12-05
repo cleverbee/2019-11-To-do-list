@@ -62,7 +62,15 @@ const remindAboutEvent = () => {
             && (difference <= 100 && difference > 0)) {
             const audioRemind = new Audio('../../audio/remind.mp3');
             audioRemind.play();
-            alert(`You have an event in less then one hour!\nType: ${item.type}`);
+
+            const reminder = document.createElement('div');
+            reminder.classList.add('reminder');
+            reminder.innerText = `You have an event in less then one hour!\nType: ${item.type}`;
+            document.querySelector('.wrap').append(reminder);
+            document.addEventListener('click', () => {
+                reminder.remove();
+            });
+
             item.remind = false;
 
             global.saveDayInLocalStorage(yyyymmddStr, eventsForCheck);
@@ -76,7 +84,45 @@ const checkIfEventsForRemind = () => {
     setInterval(remindAboutEvent, 60000);
 };
 
-const deleteElementOnClick = () => {
+const changeRemindersByClick = () => {
+    const remindButtons = document.querySelectorAll('.item-remind');
+    const yyyymmddStr = document.getElementById('dateOut').value;
+    const arrayOfEvent = global.createArrayOfEventsInDay(yyyymmddStr);
+
+    for (let i = 0; i < remindButtons.length; i++) {
+        remindButtons[i].addEventListener('click', () => {
+            arrayOfEvent[i].remind = !arrayOfEvent[i].remind;
+            global.saveDayInLocalStorage(yyyymmddStr, arrayOfEvent);
+            showBlockOfDayEvents();
+        });
+    }
+};
+
+const deleteOldReminder = () => {
+    const dateOut = document.getElementById('dateOut');
+    const yyyymmddStr = dateOut.value;
+    const arrayOfEvent = global.createArrayOfEventsInDay(yyyymmddStr);
+
+    let arrOfDate = yyyymmddStr.split('-');
+    const dateOfList = new Date(arrOfDate[0], arrOfDate[1] - 1, arrOfDate[2]);
+    const actualDate = new Date();
+    const oneDayInMillisec = 86400000;
+
+    if (actualDate - dateOfList > oneDayInMillisec) {
+        arrayOfEvent.forEach(item => {
+            delete item.remind;
+        });
+        global.saveDayInLocalStorage(yyyymmddStr, arrayOfEvent);
+        showBlockOfDayEvents();
+    }
+
+    dateOut.addEventListener('change', () => {
+        deleteOldReminder();
+    });
+}
+
+
+const deleteElementByClick = () => {
     const deleteButtons = document.querySelectorAll('.item-delete');
     const yyyymmddStr = document.getElementById('dateOut').value;
     const arrayOfEvent = global.createArrayOfEventsInDay(yyyymmddStr);
@@ -90,4 +136,9 @@ const deleteElementOnClick = () => {
     }
 };
 
-export { saveDate, checkIfEventsForRemind, deleteElementOnClick };
+const manageElementsOnList = () => {
+    changeRemindersByClick();
+    deleteElementByClick();
+}
+
+export { saveDate, checkIfEventsForRemind, manageElementsOnList, deleteOldReminder };

@@ -122,3 +122,26 @@
     overflow: hidden;
   }
 }
+
+.reminder {
+  position: absolute;
+  top: 200px;
+  width: 400px;
+  left: calc(50%-200px);
+  color: white;
+  background-color: #ee1628;
+  font-size: 18px;
+  text-align: center;
+  padding: 20px 30px;
+  border: 3px solid white;
+  animation: changeBackground 2s infinite;
+}
+
+@keyframes changeBackground {
+  25% {
+    background-color: #ee1628;
+  }
+  100% {
+    background-color: orange;
+  }
+}

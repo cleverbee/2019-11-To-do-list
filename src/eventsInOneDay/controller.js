@@ -5,6 +5,8 @@ import * as model from './model.js';
 const showBlockOfDayEvents = () => view.showBlockOfDayEvents();
 const saveDate = () => model.saveDate();
 const checkIfEventsForRemind = () => model.checkIfEventsForRemind();
-const deleteElementOnClick = () => model.deleteElementOnClick();
+const manageElementsOnList = () => model.manageElementsOnList();
 
-export { showBlockOfDayEvents, saveDate, checkIfEventsForRemind, deleteElementOnClick };
+const deleteOldReminder = () => model.deleteOldReminder();
+
+export { showBlockOfDayEvents, saveDate, checkIfEventsForRemind, manageElementsOnList, deleteOldReminder };
