@@ -45,6 +45,4 @@ eventsInOneDay.saveDate();
 eventsInOneDay.checkIfEventsForRemind();
 eventsInOneDay.deleteOldReminder();
 
-manageOneEvent.showOneEvent();
-
 export { saveDayInLocalStorage, createYyyymmddStr, createArrayOfEventsInDay };
